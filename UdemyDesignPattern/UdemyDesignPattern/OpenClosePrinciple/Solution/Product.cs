@@ -132,9 +132,8 @@ namespace UdemyDesignPattern.OpenClosePrinciple.Solution
 
             //Solution #1
             Console.WriteLine(" //Solution #1");
-            var colorSpec = new ColorSpecification(Color.Green);
             var customFilter = new CustomFilter();
-            foreach (var product in customFilter.Filter(products, colorSpec))
+            foreach (var product in customFilter.Filter(products, new ColorSpecification(Color.Green)))
             {
                 Console.WriteLine(product.ToString());
             }
@@ -149,10 +148,9 @@ namespace UdemyDesignPattern.OpenClosePrinciple.Solution
 
             //Solution #3 using both having complicated filtering
             Console.WriteLine(" //Solution #3");
-            var sizeSpec = new SizeSpecification(Size.Large);
+            var colorSpec = new ColorSpecification(Color.Green);
             var bfvComplicated = new BetterFilter<Product>();
             BetterFilter<Product>.FilterHandler fh = colorSpec.IsSatisfied;
-            fh += sizeSpec.IsSatisfied;
             foreach (var product in bfvComplicated.ApplyFilter(products, fh))
             {
                 Console.WriteLine(product.ToString());
